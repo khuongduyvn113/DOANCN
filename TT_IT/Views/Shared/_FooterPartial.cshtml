@@ -1,0 +1,58 @@
+﻿<div id="base">
+    <div class="container padding-vert-30 margin-top-40">
+        <div class="row">
+            <!-- Featured Posts -->
+            @*@Html.Action("Featured_ArticlesPartial2", "Post", new { area = "" })*@
+            <!-- End Featured Posts -->
+            <!-- Contact Details -->
+            <div class="col-md-3 margin-bottom-20">
+                <h3 class="margin-bottom-10">Liên hệ</h3>
+                <p>
+                    @*<span class="fa-phone">Điện thoại:</span> 01648315269
+                        <br>*@
+                    <span class="fa-envelope"></span><a href="#">nkhuongduy2005@gmail.com</a>
+                </p>
+                <p>
+                    <span class="fa-facebook"></span>
+                    <a href="https://www.facebook.com/blueyyywazzup">Nguyễn K.Duy</a>
+                </p>
+            </div>
+            <!-- End Contact Details -->
+            <!-- Disclaimer -->
+            <div class="col-md-3 margin-bottom-20">
+                <h3 class="margin-bottom-10">Bản quyền</h3>
+                <p>
+                    Khi sao chép bài viết phải được sự đồng ý của tác giả
+
+                </p>
+                <div class="clearfix"></div>
+            </div>
+            <!-- End Disclaimer -->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!-- Footer Menu -->
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div id="copyright" class="col-md-4">
+                <p>(c) 2019 Design by JustBlueyyy</p>
+            </div>
+            <div id="footermenu" class="col-md-8">
+                <ul class="list-unstyled list-inline pull-right">
+                    <li>
+                        <a href="@Url.Action("Index", "Home", new { area=""})">Trang chủ</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("About", "Home", new { area=""})">Về tác giả</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Contact", "Home", new { area=""})">Liên hệ</a>
+                    </li>
+                    @Html.Partial("_LoginPartial")
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

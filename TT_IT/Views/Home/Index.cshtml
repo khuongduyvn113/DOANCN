@@ -1,0 +1,74 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<TT_IT.Models.Post>
+@{
+    ViewBag.Title = "Trang Tin Tức Tân Thanh Niên Đông Nam Á";
+    Layout = "~/Views/Shared/_LayoutSidebar.cshtml";
+}
+
+<!-- Main Column -->
+<div class="col-md-8">
+    @foreach (var post in Model)
+    {
+    <!-- Blog Post -->
+        <div class="blog-post padding-bottom-20">
+            <!-- Blog Item Header -->
+            <div class="blog-item-header">
+                <!-- Title -->
+                <h1>
+                    <a href="@Url.Action("Detail", "Post", new { alias = post.Alias})">
+                        @post.Title
+                    </a>
+                </h1>
+                <div class="clearfix"></div>
+                <!-- End Title -->
+            </div>
+            <div class="blog-post-details">
+                <!-- Author Name -->
+                <div title="Tác giả" class="blog-post-details-item blog-post-details-item-left">
+                    <i class="fa fa-user color-gray-light"></i>
+                    <a href="#">@post.AspNetUser.FirstName</a>
+                </div>
+                <!-- End Author Name -->
+                <!-- Date -->
+                <div title="Ngày đăng" class="blog-post-details-item blog-post-details-item-left">
+                    <i class="fa fa-calendar color-gray-light"></i>
+                    <a href="#">@Html.DisplayFor(p => post.DatePost)</a>
+                </div>
+                <!-- End Date -->
+                <!-- Views -->
+                <div title="Lượt xem" class="blog-post-details-item blog-post-details-item-left">
+                    <i class="fa fa-eye color-gray-light"></i>
+                    <a href="#">@post.Views</a>
+                </div>
+                </div>
+
+                <!-- Blog Item Body -->
+                <div class="blog">
+                    <div class="clearfix"></div>
+                    <div class="blog-post-body row margin-top-15">
+                        <div class="col-md-5 ">
+                            <img class="margin-bottom-20" style="margin:0 auto" src="~/Photos/Posts/@post.Image" alt="thumb1">
+                        </div>
+                        <div class="col-md-7">
+                            <p>
+                                @post.Introduce
+                            </p>
+                            <!-- Read More -->
+                            <a href="@Url.Action("Detail", "Post", new { alias = post.Alias})" class="btn btn-primary">
+                                Đọc thêm
+                                <i class="icon-chevron-right readmore-icon"></i>
+                            </a>
+                            <!-- End Read More -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End Blog Item Body -->
+            </div>
+    <!-- End Blog Item -->
+    }
+    <!-- Pagination -->
+    @Html.PagedListPager(Model, Page => Url.Action("Index", "Home", new { page = Page }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded, DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded, UlElementClasses = new string[] { "pagination" } })
+    <!-- End Pagination -->
+
+</div>

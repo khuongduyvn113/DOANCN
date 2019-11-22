@@ -1,0 +1,1 @@
+The process cannot access the file 'C:\Users\trinh\Desktop\Duy\Blog IT\Blog IT\Content\files\luongtruycap.txt' because it is being used by another process.

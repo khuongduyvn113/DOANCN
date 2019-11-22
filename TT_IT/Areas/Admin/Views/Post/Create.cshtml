@@ -1,0 +1,106 @@
+﻿@model TT_IT.Models.Post
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Thêm bài viết";
+}
+
+<div id="alertSuccess" class="alert-success hide" style="position:fixed;bottom:0px; right:10px;font-weight:bold">
+    <span class="glyphicon glyphicon-saved"></span> Đã lưu nội dung
+</div>
+<div id="alertError" class="alert-error hide" style="position:fixed;bottom:0px; right:10px;font-weight:bold">
+    <span class="glyphicon glyphicon-saved"></span>
+</div>
+<h1>@ViewBag.Title</h1>
+<hr />
+<form action="@Url.Action("Create")" method="post" enctype="multipart/form-data">
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Introduce, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Introduce, new { @class = "form-control", rows = "5" })
+                @Html.ValidationMessageFor(model => model.Introduce, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("UserID", null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Introduce, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CategoryID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CategoryID", null, new { id = "categoryid", @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubCategoryID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("SubCategoryID", null, new { id = "subcategoryid", @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="file" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Thêm tag:</label>
+            <div class="col-md-10">
+                @Html.ListBox("TagID", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Views, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.TextBoxFor(model => model.Views, new { type = "number", min = "0", step = "1" })
+                    @Html.ValidationMessageFor(model => model.Views, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Show, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Show)
+                    @Html.ValidationMessageFor(model => model.Show, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Body, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-primary"> Thêm bài viết</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    @Html.ActionLink("Về danh sách", "Index")
+</div>
